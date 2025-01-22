@@ -64,7 +64,7 @@ export default function LoginPage() {
             <Button
               onClick={() => router.push("/")}
               variant="link"
-              className="pl-0"
+              className="pl-0 text-neutral-400"
             >
               <ArrowLeft className="w-4 h-4" />
               Back to Home

@@ -21,14 +21,15 @@ export default async function ProjectsPage() {
   const projects = await getProjects();
 
   return (
-    <div>
+    <div className="bg-neutral-800 p-5 rounded-2xl">
+      <h2 className="text-2xl font-bold mb-5 text-white">Projects</h2>
       <Table>
         <TableCaption>A list of projects.</TableCaption>
         <TableHeader>
           <TableRow className="bg-zinc-900/60 text-sm hover:bg-zinc-900/60 text-white">
             <TableHead className="rounded-l-lg pl-5">Image</TableHead>
             <TableHead>Project Name</TableHead>
-            <TableHead>Client</TableHead>
+            <TableHead>Client Name</TableHead>
             <TableHead>Tags</TableHead>
             <TableHead className="text-left rounded-r-lg">Action</TableHead>
           </TableRow>

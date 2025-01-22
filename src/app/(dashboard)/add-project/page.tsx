@@ -100,7 +100,7 @@ export default function AddProjectPage() {
 
   return (
     <div className="h-fit w-full">
-      <div className="w-full bg-neutral-800 p-6 rounded-xl text-white">
+      <div className="w-full bg-neutral-800 p-6 rounded-2xl text-white">
         <h1 className="text-2xl font-bold mb-6">Create New Project</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
