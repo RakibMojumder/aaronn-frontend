@@ -27,6 +27,83 @@ p {
   font-family: var(--font-rubik);
 }
 
+.codex-editor__redactor {
+  padding-bottom: 100px !important;
+}
+
+.ce-block__content {
+  max-width: 100% !important;
+  margin: 0;
+}
+
+.ce-toolbar__content {
+  max-width: 100% !important;
+}
+
+.ce-paragraph,
+.ce-header,
+.ce-quote,
+.cdx-list,
+.cdx-checklist__text,
+.ce-link-toolbar__content input {
+  color: white !important;
+}
+
+.ce-block--selected .ce-block__content {
+  background: rgba(232, 244, 255, 0.3);
+}
+
+.ce-toolbar__plus {
+  color: #6b7280;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.ce-toolbar__settings-btn {
+  color: #6b7280;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.ce-toolbar__plus:hover,
+.ce-toolbar__settings-btn:hover {
+  background-color: rgba(232, 244, 255, 0.8);
+  color: #2563eb;
+}
+
+.cdx-marker {
+  background: rgba(245, 235, 111, 0.29);
+  padding: 3px 0;
+}
+
+.ce-toolbar__actions {
+  background: transparent;
+}
+
+.ce-popover {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(209, 213, 219, 0.5);
+}
+
+.ce-popover-item:hover {
+  background-color: rgba(232, 244, 255, 0.8);
+}
+
+.ce-popover__items {
+  color: #374151;
+}
+
+.cdx-quote__text {
+  color: white !important;
+}
+
+.cdx-list__item {
+  color: white !important;
+}
+
+.cdx-quote__caption {
+  color: white !important;
+}
+
 @layer base {
   :root {
     --background: 0, 0%, 10%, 1;

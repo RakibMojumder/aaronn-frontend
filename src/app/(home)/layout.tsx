@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Syne, Rubik } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import Footer from "@/components/sections/Footer";
 import { NavBar } from "@/components/navbar/Navbar";
+import RootProvider from "@/provider/RootProvider";
 
 const syne = Syne({
   variable: "----font-syne",
@@ -32,9 +33,11 @@ export default function RootLayout({
       className={`${syne.variable} ${rubik.variable} antialiased`}
     >
       <body suppressHydrationWarning>
-        <NavBar />
-        {children}
-        <Footer />
+        <RootProvider>
+          <NavBar />
+          {children}
+          <Footer />
+        </RootProvider>
       </body>
     </html>
   );
