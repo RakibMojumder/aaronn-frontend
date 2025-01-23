@@ -1,36 +1,135 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Modern Portfolio Website
 
-## Getting Started
+A modern, full-stack portfolio website built with Next.js 14, featuring a dynamic project showcase, rich text editing, and a responsive dashboard.
 
-First, run the development server:
+## 🌟 Features
+
+### Public Features
+
+- **Dynamic Project Showcase**: Display projects with detailed information and images
+- **Responsive Design**: Fully responsive layout that works on all devices
+- **Image Optimization**: Automatic image optimization using Next.js Image component
+- **Blur Image Loading**: Progressive image loading with blur effect
+- **Rich Text Content**: Support for various content types including paragraphs, lists, and quotes
+
+### Dashboard Features
+
+- **Project Management**: CRUD operations for portfolio projects
+- **Rich Text Editor**: Advanced editor for project descriptions
+- **Image Upload**: Drag-and-drop image upload with preview
+- **Tag Management**: Multi-select tag system with search functionality
+- **Real-time Validation**: Form validation using Zod and React Hook Form
+
+## 🛠 Tech Stack
+
+### Frontend
+
+- **Framework**: Next.js 14 (App Router)
+- **Styling**: Tailwind CSS
+- **State Management**: React Hooks
+- **Form Handling**: React Hook Form
+- **Validation**: Zod
+- **UI Components**: Shadcn UI
+- **Animations**: Framer Motion
+- **Rich Text Editor**: Editor.js
+- **Toast Notifications**: Sonner
+
+### Backend Integration
+
+- **API Integration**: Server Actions
+- **Image Upload**: Custom file upload system
+- **Authentication**: JWT-based auth with secure cookie storage
+- **Data Fetching**: Server-side and client-side fetching strategies
+
+## 📦 Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/RakibMojumder/aaronn-frontend.git
+```
+
+2. Install dependencies:
+
+```bash
+cd aaronn-portfolio
+npm install
+```
+
+3. Set up environment variables:
+
+```bash
+cp .env.example .env.local
+```
+
+4. Update `.env.local` with your configuration:
+
+```env
+NEXT_PUBLIC_SERVER_URL=your_api_url
+```
+
+5. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Deployment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The project is optimized for deployment on Vercel:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Push your code to GitHub
+2. Import your repository to Vercel
+3. Configure environment variables
+4. Deploy!
 
-## Learn More
+## 🔧 Configuration
 
-To learn more about Next.js, take a look at the following resources:
+### Environment Variables
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `NEXT_PUBLIC_SERVER_URL`: Backend API URL
+- Add other environment variables as needed
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Project Structure
 
-## Deploy on Vercel
+```
+src/
+├── actions/        # Server actions
+├── app/           # App router pages
+├── components/    # Reusable components
+├── lib/           # Utilities and helpers
+├── interface/     # TypeScript interfaces
+└── styles/        # Global styles
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 💻 Development
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Commands
+
+- `npm run dev`: Start development server
+- `npm run build`: Build for production
+- `npm run start`: Start production server
+- `npm run lint`: Run ESLint
+- `npm run format`: Format code with Prettier
+
+### Code Style
+
+- TypeScript for type safety
+- ESLint for code linting
+- Prettier for code formatting
+- Husky for pre-commit hooks
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👥 Authors
+
+- Rakib Ahmed - [GitHub Profile](https://github.com/RakibMojumder)
+
+## 🙏 Acknowledgments
+
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Shadcn UI](https://ui.shadcn.com/)
+- [Editor.js](https://editorjs.io/)

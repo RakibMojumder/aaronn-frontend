@@ -1,9 +1,8 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import logo from "../../../public/assets/logo.svg";
 import Image from "next/image";
 import MobileNav from "./MobileNav";
-import { getSession } from "@/lib/auth";
+import AuthButton from "./AuthButton";
 
 const navLinks = [
   { href: "/", label: "HOME" },
@@ -12,8 +11,6 @@ const navLinks = [
 ];
 
 export async function NavBar() {
-  const session = await getSession();
-
   return (
     <nav className="sticky top-0 z-50 backdrop-blur">
       <div className="container mx-auto px-4">
@@ -33,29 +30,15 @@ export async function NavBar() {
                 {link.label}
               </Link>
             ))}
-            {session ? (
-              <Link
-                href="/projects"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                <Button variant="outline" className="rounded-full">
-                  Dashboard
-                </Button>
-              </Link>
-            ) : (
-              <Link
-                href="/login"
-                className="text-gray-300 hover:text-white transition-colors"
-              >
-                <Button variant="outline" className="rounded-full">
-                  Login
-                </Button>
-              </Link>
-            )}
+            <AuthButton />
           </div>
 
           {/* Mobile Navigation */}
-          <MobileNav />
+          <div className="md:hidden space-x-4">
+            <AuthButton />
+
+            <MobileNav />
+          </div>
         </div>
       </div>
     </nav>

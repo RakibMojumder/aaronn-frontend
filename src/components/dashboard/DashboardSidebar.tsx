@@ -42,7 +42,7 @@ const DashboardSidebar = () => {
           <SidebarLink
             className="pl-4"
             link={{
-              label: "Manu Arora",
+              label: "Rakib Ahmed",
               href: "#",
               icon: (
                 <Image

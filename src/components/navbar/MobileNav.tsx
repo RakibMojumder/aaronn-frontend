@@ -16,9 +16,9 @@ const MobileNav = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
-      <SheetTrigger asChild className="md:hidden">
+      <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="text-white">
-          <Menu className="h-6 w-6" />
+          <Menu className="size-7" />
           <span className="sr-only">Toggle menu</span>
         </Button>
       </SheetTrigger>
@@ -38,14 +38,6 @@ const MobileNav = () => {
               {link.label}
             </Link>
           ))}
-          {/* <AuthButton /> */}
-          {/* <Button
-                  variant="outline"
-                  className="text-white border-white hover:bg-white hover:text-black w-full"
-                  onClick={() => setIsOpen(false)}
-                >
-                  CONTACT
-                </Button> */}
         </div>
       </SheetContent>
     </Sheet>
