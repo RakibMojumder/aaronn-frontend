@@ -17,13 +17,16 @@ export async function loginAction(formData: FormData) {
       return { error: "Email and password are required." };
     }
 
-    const response = await fetch("http://localhost:5000/users/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/users/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      }
+    );
 
     const data: ApiResponse<{ token: string }> = await response.json();
 
@@ -78,13 +81,16 @@ export async function uploadFileAction(formData: FormData) {
     const apiFormData = new FormData();
     apiFormData.append("file", file);
 
-    const response = await fetch("http://localhost:5000/file-upload/upload", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${session.value}`,
-      },
-      body: apiFormData,
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/file-upload/upload`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${session.value}`,
+        },
+        body: apiFormData,
+      }
+    );
 
     const data: ApiResponse<{ url: string }> = await response.json();
 
@@ -118,21 +124,21 @@ export async function createProjectAction(projectData: ProjectData) {
       return { error: "Authentication required" };
     }
 
-    const response = await fetch("http://localhost:5000/projects", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${session.value}`,
-      },
-      body: JSON.stringify(projectData),
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/projects`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.value}`,
+        },
+        body: JSON.stringify(projectData),
+      }
+    );
 
     const data: ApiResponse<Project> = await response.json();
 
-    if (data.success) {
-      revalidateTag("projects");
-    }
-
+    revalidateTag("projects");
     return data;
   } catch (error) {
     console.error("Error creating project:", error);
@@ -143,12 +149,15 @@ export async function createProjectAction(projectData: ProjectData) {
 export async function getProjectsAction() {
   "use server";
   try {
-    const response = await fetch("http://localhost:5000/projects", {
-      method: "GET",
-      next: {
-        tags: ["projects"],
-      },
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/projects`,
+      {
+        method: "GET",
+        next: {
+          tags: ["projects"],
+        },
+      }
+    );
 
     const data: ApiResponse<Project[]> = await response.json();
     return data;
@@ -161,7 +170,9 @@ export async function getProjectsAction() {
 export async function getProjectByIdAction(id: string) {
   "use server";
   try {
-    const response = await fetch(`http://localhost:5000/projects/${id}`);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/projects/${id}`
+    );
     const data: ApiResponse<Project> = await response.json();
     return data;
   } catch (error) {
@@ -174,7 +185,7 @@ export async function updateProjectAction(projectData: Project) {
   "use server";
   try {
     const response = await fetch(
-      `http://localhost:5000/projects/${projectData._id}`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/projects/${projectData._id}`,
       {
         method: "PUT",
         headers: {
@@ -201,7 +212,7 @@ export async function deleteProjectAction(projectId: string) {
   "use server";
   try {
     const response = await fetch(
-      `http://localhost:5000/projects/${projectId}`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/projects/${projectId}`,
       {
         method: "DELETE",
       }
@@ -216,5 +227,19 @@ export async function deleteProjectAction(projectId: string) {
   } catch (error) {
     console.error("Error deleting project:", error);
     return { error: "Failed to delete project" };
+  }
+}
+
+// Get other projects action
+export async function getOtherProjectsAction(id: string) {
+  "use server";
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/projects/other-projects/${id}`
+    );
+    const data: ApiResponse<Project[]> = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error getting other projects:", error);
   }
 }

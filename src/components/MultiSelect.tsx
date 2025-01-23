@@ -59,14 +59,19 @@ const MultiSelect = ({
     onChange(selected.filter((item) => item.value !== option.value));
   };
 
+  const handleContainerClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div className={cn("relative", className)} ref={wrapperRef}>
       <div
         className={cn(
-          "border border-white/10 rounded-lg p-2 flex flex-wrap items-center cursor-pointer min-h-[42px] min-w-min",
+          "w-full border border-white/10 rounded-lg p-2 flex flex-wrap items-center cursor-pointer min-h-[42px] min-w-min cursor-pointer",
           className
         )}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleContainerClick}
       >
         <AnimatePresence>
           {selected.length > 0 ? (
@@ -80,8 +85,10 @@ const MultiSelect = ({
               >
                 {item.label}
                 <button
+                  type="button"
                   className="ml-1 text-primary focus:outline-none"
                   onClick={(e) => {
+                    e.preventDefault();
                     e.stopPropagation();
                     removeOption(item);
                   }}
@@ -123,7 +130,10 @@ const MultiSelect = ({
                       ? "bg-neutral-800"
                       : ""
                   }`}
-                  onClick={() => toggleOption(option)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    toggleOption(option);
+                  }}
                 >
                   <input
                     type="checkbox"

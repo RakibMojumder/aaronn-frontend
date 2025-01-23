@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { updateProjectAction, uploadFileAction } from "@/actions/actions";
 import { toast } from "sonner";
-import { Project } from "@/interface";
+import { Project, ProjectDescription } from "@/interface";
 import { Button } from "./ui/button";
 
 // Dynamically import TextEditor with SSR disabled
@@ -52,7 +52,9 @@ export default function UpdateProjectModal({
   onClose,
   project,
 }: UpdateProjectModalProps) {
-  const [editorContent, setEditorContent] = useState(project.description || {});
+  const [editorContent, setEditorContent] = useState<Record<string, unknown>>(
+    (project.description as unknown as Record<string, unknown>) || {}
+  );
   const [selectedTags, setSelectedTags] = useState<Option[]>(
     project.tags.map((tag) => ({ value: tag, label: tag }))
   );
@@ -79,7 +81,9 @@ export default function UpdateProjectModal({
         clientName: project.clientName,
       });
       setSelectedTags(project.tags.map((tag) => ({ value: tag, label: tag })));
-      setEditorContent(project.description || {});
+      setEditorContent(
+        project.description as unknown as Record<string, unknown>
+      );
       setCurrentImageUrl(project.image);
     }
   }, [project, reset]);
@@ -109,7 +113,7 @@ export default function UpdateProjectModal({
         ...data,
         _id: project._id,
         tags,
-        description: editorContent,
+        description: editorContent as unknown as ProjectDescription,
         image: imageUrl,
       };
 
@@ -178,7 +182,10 @@ export default function UpdateProjectModal({
                 <MultiSelect
                   options={tagOptions}
                   selected={selectedTags}
-                  onChange={setSelectedTags}
+                  onChange={(newTags) => {
+                    // Prevent default to avoid form submission
+                    setSelectedTags(newTags);
+                  }}
                   placeholder="Select tags..."
                   className="bg-transparent w-full"
                 />
@@ -200,8 +207,12 @@ export default function UpdateProjectModal({
           </div>
 
           <TextEditor
-            onChange={setEditorContent}
-            initialContent={project.description}
+            onChange={(content: Record<string, unknown>) =>
+              setEditorContent(content)
+            }
+            initialContent={
+              project.description as unknown as Record<string, unknown>
+            }
           />
 
           <div className="flex justify-end space-x-4">

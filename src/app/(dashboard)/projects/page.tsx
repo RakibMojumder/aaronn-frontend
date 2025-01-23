@@ -48,7 +48,9 @@ export default async function ProjectsPage() {
               </TableCell>
               <TableCell>{project.projectName}</TableCell>
               <TableCell>{project.clientName}</TableCell>
-              <TableCell>{project.tags.join(", ")}</TableCell>
+              <TableCell className="max-w-28">
+                {project.tags.join(", ")}
+              </TableCell>
               <TableCell>
                 <ProjectActions project={project as Project} />
               </TableCell>

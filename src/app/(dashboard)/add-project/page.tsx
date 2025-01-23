@@ -92,7 +92,7 @@ export default function AddProjectPage() {
       }
 
       toast.success("Project created successfully");
-      router.push("/dashboard/projects");
+      router.push("/projects");
     } catch (error) {
       console.error("Error submitting form:", error);
     }

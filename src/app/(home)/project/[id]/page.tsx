@@ -1,10 +1,15 @@
 import { getProjectByIdAction } from "@/actions/actions";
 import Content from "@/components/Content";
+import OtherProjects from "@/components/OtherProjects";
 import { shimmer, toBase64 } from "@/lib/image";
 import Image from "next/image";
 
-const ProjectDetailPage = async ({ params }: { params: { id: string } }) => {
-  const { id } = await params;
+const ProjectDetailPage = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
+  const id = (await params).id;
   const project = await getProjectByIdAction(id);
 
   return (
@@ -48,6 +53,8 @@ const ProjectDetailPage = async ({ params }: { params: { id: string } }) => {
           ))}
         </div>
       </div>
+
+      <OtherProjects id={id} />
     </div>
   );
 };

@@ -88,7 +88,7 @@ const List = ({
 
 const Quote = ({ text, caption }: BlockData) => {
   return (
-    <div className="border-l-4 text-white border-primary pl-4 bg-neutral-950 p-4">
+    <div className="border-l-4 text-white border-primary pl-4 bg-neutral-800 p-4">
       <p>{text}</p>
       <p className="text-sm text-primary mt-2">{caption}</p>
     </div>

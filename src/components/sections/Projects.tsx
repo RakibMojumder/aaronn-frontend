@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { getProjectsAction } from "@/actions/actions";
+import Link from "next/link";
 
 const getProjects = async () => {
   const projects = await getProjectsAction();
@@ -24,11 +25,11 @@ export async function ProjectsSection() {
           </Button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects?.data?.map((project, index) => (
-            <div key={index} className="group relative">
+          {projects?.data?.map((project) => (
+            <Link href={`/project/${project._id}`} key={project._id}>
               <div className="aspect-square rounded-xl overflow-hidden">
                 <Image
-                  src={project.image || "/placeholder.svg"}
+                  src={project.image || ""}
                   alt="Project Image"
                   width={600}
                   height={600}
@@ -55,7 +56,7 @@ export async function ProjectsSection() {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
