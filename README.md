@@ -119,6 +119,12 @@ src/
 - Prettier for code formatting
 - Husky for pre-commit hooks
 
+## Live-link: https://aaronn-dev.vercel.app
+
+## Admin Credentials
+- Email: admin@gmail.com
+- Password: 123456
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
