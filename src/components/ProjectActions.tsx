@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import UpdateProjectModal from "@/components/UpdateProjectModal";
+import DeleteProjectModal from "@/components/DeleteProjectModal";
 import { Project } from "@/interface";
 import Link from "next/link";
 
@@ -10,12 +11,13 @@ interface ProjectActionsProps {
 
 export default function ProjectActions({ project }: ProjectActionsProps) {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   return (
     <>
       <div className="flex items-center gap-4">
         <Link
-          href={`/projects/${project._id}`}
+          href={`/project/${project._id}`}
           className="bg-orange-900/20 py-1.5 px-4 rounded-lg text-xs font-medium text-orange-500 border border-orange-500/40"
         >
           Detail
@@ -26,7 +28,10 @@ export default function ProjectActions({ project }: ProjectActionsProps) {
         >
           Edit
         </button>
-        <button className="bg-red-900/20 py-1.5 px-4 rounded-lg text-xs font-medium text-red-500 border border-red-500/40">
+        <button
+          onClick={() => setIsDeleteModalOpen(true)}
+          className="bg-red-900/20 py-1.5 px-4 rounded-lg text-xs font-medium text-red-500 border border-red-500/40"
+        >
           Delete
         </button>
       </div>
@@ -35,6 +40,12 @@ export default function ProjectActions({ project }: ProjectActionsProps) {
         project={project}
         isOpen={isUpdateModalOpen}
         onClose={() => setIsUpdateModalOpen(false)}
+      />
+
+      <DeleteProjectModal
+        project={project}
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
       />
     </>
   );

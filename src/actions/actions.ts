@@ -4,7 +4,7 @@ import { ApiResponse, Project, ProjectData } from "@/interface";
 import { encrypt, login } from "@/lib/auth";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { revalidateTag } from 'next/cache';
+import { revalidateTag } from "next/cache";
 
 // Login action
 export async function loginAction(formData: FormData) {
@@ -130,7 +130,7 @@ export async function createProjectAction(projectData: ProjectData) {
     const data: ApiResponse<Project> = await response.json();
 
     if (data.success) {
-      revalidateTag('projects');
+      revalidateTag("projects");
     }
 
     return data;
@@ -146,8 +146,8 @@ export async function getProjectsAction() {
     const response = await fetch("http://localhost:5000/projects", {
       method: "GET",
       next: {
-        tags: ['projects']
-      }
+        tags: ["projects"],
+      },
     });
 
     const data: ApiResponse<Project[]> = await response.json();
@@ -157,6 +157,19 @@ export async function getProjectsAction() {
   }
 }
 
+// Get project by id action
+export async function getProjectByIdAction(id: string) {
+  "use server";
+  try {
+    const response = await fetch(`http://localhost:5000/projects/${id}`);
+    const data: ApiResponse<Project> = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error getting project by id:", error);
+  }
+}
+
+// Update project action
 export async function updateProjectAction(projectData: Project) {
   "use server";
   try {
@@ -175,7 +188,7 @@ export async function updateProjectAction(projectData: Project) {
       throw new Error("Failed to update project");
     }
 
-    revalidateTag('projects');
+    revalidateTag("projects");
     return { success: true };
   } catch (error) {
     console.error("Error updating project:", error);
@@ -183,6 +196,7 @@ export async function updateProjectAction(projectData: Project) {
   }
 }
 
+// Delete project action
 export async function deleteProjectAction(projectId: string) {
   "use server";
   try {
@@ -197,7 +211,7 @@ export async function deleteProjectAction(projectId: string) {
       throw new Error("Failed to delete project");
     }
 
-    revalidateTag('projects');
+    revalidateTag("projects");
     return { success: true };
   } catch (error) {
     console.error("Error deleting project:", error);

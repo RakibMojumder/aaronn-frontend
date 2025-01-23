@@ -1,32 +1,16 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import projectImg from "../../../public/assets/project.png";
+import { getProjectsAction } from "@/actions/actions";
 
-const projects = [
-  {
-    title: "Brand Journey Improvements",
-    categories: ["Branding", "Logo Design"],
-    image: projectImg,
-  },
-  {
-    title: "Brand Grouping",
-    categories: ["Branding", "Logo Design"],
-    image: projectImg,
-  },
-  {
-    title: "NFT Glimps",
-    categories: ["Portfolio", "NFT Design"],
-    image: projectImg,
-  },
-  {
-    title: "Brand Suggestions",
-    categories: ["13", "NFT Logo"],
-    image: projectImg,
-  },
-];
+const getProjects = async () => {
+  const projects = await getProjectsAction();
+  return projects;
+};
 
-export function ProjectsSection() {
+export async function ProjectsSection() {
+  const projects = await getProjects();
+
   return (
     <section className="py-24 text-white">
       <div className="container mx-auto px-4">
@@ -40,25 +24,35 @@ export function ProjectsSection() {
           </Button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
+          {projects?.data?.map((project, index) => (
             <div key={index} className="group relative">
               <div className="aspect-square rounded-xl overflow-hidden">
                 <Image
                   src={project.image || "/placeholder.svg"}
-                  alt={project.title}
+                  alt="Project Image"
                   width={600}
                   height={600}
                   className="w-full group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
               <div className="mt-4">
-                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                <div className="flex gap-2">
-                  {project.categories.map((category, idx) => (
-                    <span key={idx} className="text-sm text-gray-400">
-                      {category}
-                    </span>
-                  ))}
+                <h3 className="text-xl font-semibold mb-2">
+                  {project.projectName}
+                </h3>
+                <p className="text-sm text-gray-400 flex items-center gap-4">
+                  <span className="w-12">Client: </span>
+                  <span className="text-white">{project.clientName}</span>
+                </p>
+
+                <div className="flex items-center gap-4">
+                  <p className="text-sm text-gray-400 w-12">Work:</p>
+                  <div className="flex gap-2">
+                    {project.tags.map((tag, idx) => (
+                      <span key={idx} className="text-sm text-white">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

@@ -40,7 +40,7 @@ export default function AboutPage() {
       {/* Images Section */}
       <div className="relative mb-24">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          <div className="md:col-span-6 lg:col-span-4">
+          <div className="md:col-span-6 lg:col-span-4 relative">
             <Image
               src={aboutImg}
               alt="Portrait 1"
@@ -48,8 +48,9 @@ export default function AboutPage() {
               height={500}
               className="w-full aspect-square object-cover h-[500px]"
             />
+            <div className="h-44 w-14 border border-primary rounded-full absolute top-0 -left-7 hidden md:block"></div>
           </div>
-          <div className="md:col-span-6 lg:col-span-8">
+          <div className="md:col-span-6 lg:col-span-8 relative">
             <Image
               src={aboutMeImg}
               alt="Portrait 2"
@@ -57,6 +58,7 @@ export default function AboutPage() {
               height={500}
               className="w-full aspect-square object-cover h-[500px]"
             />
+            <div className="w-44 h-14 border border-primary rounded-full absolute -bottom-7 right-0 hidden md:block"></div>
           </div>
         </div>
       </div>

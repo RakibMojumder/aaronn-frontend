@@ -72,7 +72,6 @@ export default function AddProjectPage() {
       const formData = new FormData();
       formData.append("file", projectImage as File);
       const response = await uploadFileAction(formData);
-      console.log(response);
 
       if (response.error) {
         return toast.error(response.error);
@@ -88,11 +87,12 @@ export default function AddProjectPage() {
       };
 
       const result = await createProjectAction(projectData as ProjectData);
-      console.log(result);
+      if (result?.error) {
+        return toast.error(result.error);
+      }
 
-      // console.log("Form data:", formData);
-
-      // router.push("/dashboard/projects");
+      toast.success("Project created successfully");
+      router.push("/dashboard/projects");
     } catch (error) {
       console.error("Error submitting form:", error);
     }
