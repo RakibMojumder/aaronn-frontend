@@ -45,14 +45,10 @@ export async function ProjectsSection() {
                   <span className="text-white">{project.clientName}</span>
                 </p>
 
-                <div className="flex items-center gap-4">
-                  <p className="text-sm text-gray-400 w-12">Work:</p>
-                  <div className="flex gap-2">
-                    {project.tags.map((tag, idx) => (
-                      <span key={idx} className="text-sm text-white">
-                        {tag}
-                      </span>
-                    ))}
+                <div className="flex items-center gap-4 mt-2">
+                  <p className="text-sm text-gray-400 min-w-12">Work:</p>
+                  <div className="text-sm text-white">
+                    {project.tags.join(", ")}
                   </div>
                 </div>
               </div>

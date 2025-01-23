@@ -8,8 +8,8 @@ import { useState } from "react";
 
 const navLinks = [
   { href: "/", label: "HOME" },
-  { href: "/about", label: "ABOUT ME" },
-  { href: "/work", label: "MY WORKS" },
+  { href: "/about-me", label: "ABOUT ME" },
+  { href: "/contact", label: "CONTACT" },
 ];
 
 const MobileNav = () => {
